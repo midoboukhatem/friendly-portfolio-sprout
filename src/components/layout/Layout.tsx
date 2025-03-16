@@ -1,7 +1,6 @@
 
 import { ReactNode } from 'react';
 import Navbar from './Navbar';
-import Footer from './Footer';
 import HeroImage from '../home/HeroImage';
 
 type LayoutProps = {
@@ -10,11 +9,10 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative">
       <HeroImage />
       <Navbar />
-      <main className="flex-grow">{children}</main>
-      {/* Remove Footer since we're handling footer elements in each page */}
+      <main className="flex-grow flex">{children}</main>
     </div>
   );
 };

@@ -2,17 +2,15 @@
 const HeroImage = () => {
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none">
-      {/* Animated blobs in background */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-portfolio-teal-light rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob dark:opacity-10"></div>
-      <div className="absolute top-40 right-20 w-72 h-72 bg-portfolio-blue-light rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000 dark:opacity-10"></div>
-      <div className="absolute bottom-20 left-1/3 w-72 h-72 bg-portfolio-blue rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000 dark:opacity-10"></div>
+      {/* Light/dark mode responsive background */}
+      <div className="absolute inset-0 bg-sky-200 dark:bg-portfolio-navy-deep transition-colors duration-300"></div>
       
       {/* Main background image */}
       <div className="absolute inset-0 flex items-center justify-center">
         <img 
-          src="/lovable-uploads/67788e89-aad3-45ed-8ebc-d9c955b39ebe.png" 
-          alt="Salesforce Nature Background" 
-          className="max-w-full max-h-full object-contain opacity-20 dark:opacity-10"
+          src="/lovable-uploads/72165df4-6e11-4b92-8129-e976fa6821b2.png" 
+          alt="Salesforce Forest Scene" 
+          className="w-full h-full object-cover"
         />
       </div>
     </div>
