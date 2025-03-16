@@ -1,5 +1,6 @@
 
 import { CheckCircle } from 'lucide-react';
+import { useState } from 'react';
 
 const SkillsSection = () => {
   const skillCategories = [
@@ -17,6 +18,9 @@ const SkillsSection = () => {
     }
   ];
 
+  // Let's create an array to track hover state for each category
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
     <section className="py-16 bg-portfolio-gray-light">
       <div className="section-container">
@@ -25,10 +29,13 @@ const SkillsSection = () => {
           {skillCategories.map((category, index) => (
             <div 
               key={index} 
-              className="bg-white p-6 rounded-lg shadow-sm"
-              x-data="{ hovered: false }"
-              x-on:mouseenter="hovered = true"
-              x-on:mouseleave="hovered = false"
+              className="bg-white p-6 rounded-lg shadow-sm transition-transform duration-300 ease-in-out"
+              style={{ 
+                transform: hoveredIndex === index ? 'translateY(-5px)' : 'none',
+                boxShadow: hoveredIndex === index ? '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)' : ''
+              }}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               <h3 className="text-xl font-semibold mb-4 text-portfolio-blue">{category.title}</h3>
               <ul className="space-y-3">
