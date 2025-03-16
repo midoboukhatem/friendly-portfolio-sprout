@@ -8,8 +8,8 @@ const HeroImage = () => {
       
       <div className="relative">
         <img 
-          src="/lovable-uploads/76fc40c0-cc4b-4269-a802-4868c37d710e.png" 
-          alt="Portfolio Hero" 
+          src="/lovable-uploads/67788e89-aad3-45ed-8ebc-d9c955b39ebe.png" 
+          alt="Salesforce Nature Background" 
           className="relative rounded-lg shadow-xl animate-float"
         />
       </div>
