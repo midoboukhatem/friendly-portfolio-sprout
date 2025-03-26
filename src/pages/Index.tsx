@@ -1,70 +1,87 @@
-
-import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { Sparkles, ArrowRight, FileText } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Index = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-between overflow-hidden">
-      {/* Hero Section with centered content */}
-      <div className="flex-grow flex items-center justify-center">
-        <div className="text-center max-w-4xl px-4 sm:px-6">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in text-white drop-shadow-lg">
-            HELLO <span className="text-portfolio-teal-light">SALESFORCE COMMUNITY!</span>
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 text-white drop-shadow-md">
-            I specialize in Salesforce administration and business analysis, optimizing processes, automating workflows, and enhancing CRM strategies. With a data-driven mindset and a passion for efficiency and user adoption, I help teams streamline operations and drive business growth. Always learning, always improving—let's build something great together!
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link to="/about" className="bg-white text-portfolio-blue px-6 py-3 rounded-md font-medium inline-flex items-center group hover:bg-white/90 transition-all dark:bg-portfolio-teal-light dark:text-portfolio-navy hover:shadow-lg">
-              Resume <ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" size={18} />
+    <section className="flex flex-col items-center justify-center text-center h-screen w-full overflow-hidden">
+      {/* Hero Section - Fully Centered Text */}
+      <div className="flex flex-col items-center justify-center w-full max-w-3xl h-full">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground dark:text-white drop-shadow-lg">
+          HELLO <span className="text-[#009EDB]">SALESFORCE COMMUNITY!</span>
+        </h1>
+        <p className="text-lg md:text-xl mb-8 text-foreground dark:text-white drop-shadow-md">
+          I specialize in Salesforce administration and business analysis, optimizing processes, automating workflows, and enhancing CRM strategies. 
+          With a data-driven mindset and a passion for efficiency and user adoption, I help teams streamline operations and drive business growth. 
+          Always learning, always improving—let's build something great together!
+        </p>
+
+        {/* Resume & Cover Letter Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link to="/about">
+              <Button 
+                variant="default" 
+                size="lg"
+                className="group font-medium text-base transition-all duration-500 rounded-md dark:bg-black dark:text-white dark:hover:bg-gray-900 
+                          bg-[#009EDB] text-white hover:bg-blue-600 flex items-center gap-2"
+              >
+                <Sparkles className="transition-all duration-300 group-hover:rotate-12" size={18} />
+                Resume
+                <ArrowRight className="ml-1 transition-transform group-hover:translate-x-1" size={18} />
+              </Button>
             </Link>
-            <Link to="/projects" className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-md font-medium hover:bg-white/10 transition-all hover:shadow-lg">
-              Cover Letter
+          </motion.div>
+
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link to="/projects">
+              <Button 
+                variant="default" 
+                size="lg"
+                className="group font-medium text-base transition-all duration-500 rounded-md dark:bg-black dark:text-white dark:hover:bg-gray-900 
+                          bg-[#009EDB] text-white hover:bg-blue-600 flex items-center gap-2"
+              >
+                <FileText className="transition-all duration-300 group-hover:scale-110" size={18} />
+                Cover Letter
+              </Button>
             </Link>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Footer Links (Persistent Across Pages) */}
+      <footer className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-6">
+        <a href="#" className="flex flex-col items-center text-foreground hover:text-[#009EDB] transition">
+          <div className="bg-white/80 p-3 rounded-full mb-1 shadow-md hover:bg-white">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
           </div>
-        </div>
-      </div>
-      
-      {/* Centered Footer Links */}
-      <div className="py-8">
-        <div className="flex justify-center space-x-8">
-          <a href="#" className="group flex flex-col items-center text-gray-800 dark:text-white hover:text-portfolio-blue dark:hover:text-portfolio-teal-light transition-colors">
-            <div className="bg-white/80 dark:bg-white/20 p-3 rounded-full mb-1 group-hover:bg-white dark:group-hover:bg-white/40 transition-colors shadow-md">
-              <div className="h-6 w-6 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect x="2" y="9" width="4" height="12"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-              </div>
-            </div>
-            <span className="text-xs font-medium drop-shadow-md">LinkedIn</span>
-          </a>
-          <a href="#" className="group flex flex-col items-center text-gray-800 dark:text-white hover:text-portfolio-blue dark:hover:text-portfolio-teal-light transition-colors">
-            <div className="bg-white/80 dark:bg-white/20 p-3 rounded-full mb-1 group-hover:bg-white dark:group-hover:bg-white/40 transition-colors shadow-md">
-              <div className="h-6 w-6 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-              </div>
-            </div>
-            <span className="text-xs font-medium drop-shadow-md">Trailhead</span>
-          </a>
-          <a href="mailto:your-email@example.com" className="group flex flex-col items-center text-gray-800 dark:text-white hover:text-portfolio-blue dark:hover:text-portfolio-teal-light transition-colors">
-            <div className="bg-white/80 dark:bg-white/20 p-3 rounded-full mb-1 group-hover:bg-white dark:group-hover:bg-white/40 transition-colors shadow-md">
-              <div className="h-6 w-6 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-              </div>
-            </div>
-            <span className="text-xs font-medium drop-shadow-md">Email</span>
-          </a>
-        </div>
-      </div>
+          <span className="text-xs font-medium">LinkedIn</span>
+        </a>
+        <a href="#" className="flex flex-col items-center text-foreground hover:text-[#009EDB] transition">
+          <div className="bg-white/80 p-3 rounded-full mb-1 shadow-md hover:bg-white">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </div>
+          <span className="text-xs font-medium">Trailhead</span>
+        </a>
+        <a href="mailto:your-email@example.com" className="flex flex-col items-center text-foreground hover:text-[#009EDB] transition">
+          <div className="bg-white/80 p-3 rounded-full mb-1 shadow-md hover:bg-white">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1 0-2-.9-2-2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <span className="text-xs font-medium">Email</span>
+        </a>
+      </footer>
     </section>
   );
 };

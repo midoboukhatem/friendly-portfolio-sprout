@@ -1,18 +1,16 @@
+import { useLocation } from "react-router-dom";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
-import { ReactNode } from 'react';
-import Navbar from './Navbar';
-import HeroImage from '../home/HeroImage';
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
-type LayoutProps = {
-  children: ReactNode;
-};
-
-const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="flex flex-col min-h-screen relative">
-      <HeroImage />
+    <div className={`min-h-screen flex flex-col ${isHomePage ? "home-background" : "normal-background"}`}>
       <Navbar />
-      <main className="flex-grow flex">{children}</main>
+      <main className="flex-grow w-full">{children}</main>
+      <Footer />
     </div>
   );
 };

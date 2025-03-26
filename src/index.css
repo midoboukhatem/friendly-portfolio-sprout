@@ -1,109 +1,69 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-
-    --primary: 196 94% 48%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-
-    --accent: 210 40% 96%;
-    --accent-foreground: 222 47% 11%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 196 94% 48%;
-
-    --radius: 0.5rem;
-  }
- 
-  .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
- 
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
- 
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
- 
-    --primary: 196 94% 48%;
-    --primary-foreground: 222 47% 11%;
- 
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
- 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
- 
-    --accent: 217 33% 17%;
-    --accent-foreground: 210 40% 98%;
- 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
- 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 212 94% 48%;
-  }
+/* ✅ Set global styles */
+html, body {
+  width: 100vw; 
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
-  }
+/* ✅ Ensure header does not get included in background */
+body {
+  display: flex;
+  flex-direction: column;
 }
 
-@layer components {
-  .section-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24;
-  }
-  .section-title {
-    @apply text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-portfolio-navy font-heading;
-  }
-  .timeline-item {
-    @apply relative pl-8 pb-12 border-l border-portfolio-blue;
-  }
-  .timeline-dot {
-    @apply absolute -left-2 w-4 h-4 bg-portfolio-blue rounded-full;
-  }
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
-  }
-  .nav-link {
-    @apply px-4 py-2 text-gray-700 hover:text-portfolio-blue transition-colors duration-200;
-  }
-  .nav-link-active {
-    @apply px-4 py-2 text-portfolio-blue font-medium;
-  }
-  .badge {
-    @apply inline-block px-3 py-1 text-xs font-medium rounded-full bg-portfolio-teal-light text-portfolio-blue;
-  }
+/* ✅ Home Page Background - Fills the entire screen */
+.home-background {
+  background-image: url('/home/ser123/friendly-portfolio-sprout/public/lovable-uploads/72165df4-6e11-4b92-8129-e976fa6821b2.png'); /* Update with your correct path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+  /* Dynamically adjust height to exclude header */
+  height: calc(100vh - 80px); /* Adjust 80px to your header height */
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  background-color: #B3E5FC; /* Light sky blue for light mode */
+}
+
+/* ✅ Dark mode background */
+.dark .home-background {
+  background-color: #1E293B; /* Dark navy blue */
+}
+
+/* ✅ Prevent extra white space at bottom */
+.home-background main {
+  flex-grow: 1;
+}
+
+/* ✅ Normal background for other pages */
+.normal-background {
+  background-color: white;
+  min-height: 100vh;
+}
+.dark .normal-background {
+  background-color: #1a1a1a; /* Dark mode color */
+}
+
+/* ✅ Footer Fix - Always Stays at Bottom */
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
 }

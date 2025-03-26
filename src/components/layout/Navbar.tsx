@@ -1,123 +1,78 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Home, User, Briefcase, Award, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../../hooks/use-theme';
-import { Switch } from '../ui/switch';
+import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) {
+      document.documentElement.setAttribute('data-theme', storedTheme);
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  }, []);
+
+  const handleThemeToggle = () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    toggleTheme();
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-transparent backdrop-blur-sm">
+    <header 
+      className={cn(
+        "fixed top-0 left-0 w-full z-50 transition-all duration-300 shadow-md",
+        theme === "dark" ? "bg-black" : "bg-white"
+      )}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
-          <div className="flex justify-start lg:w-0 lg:flex-1">
-            <NavLink to="/" className="flex items-center">
-              <span className="text-xl font-bold text-white dark:text-white font-heading drop-shadow-md">Portfolio</span>
-            </NavLink>
-          </div>
-          
-          <div className="md:hidden flex items-center gap-4">
-            <div className="flex items-center space-x-2">
-              <Switch
-                checked={theme === 'dark'}
-                onCheckedChange={toggleTheme}
-                className="data-[state=checked]:bg-portfolio-teal-light data-[state=unchecked]:bg-portfolio-blue"
-              />
-              <span className="text-xs text-white drop-shadow-md">
-                {theme === 'dark' ? 'Dark' : 'Light'}
-              </span>
-            </div>
+        <div className="flex justify-between items-center py-4">
+          <NavLink to="/" className="text-xl font-bold font-heading transition-all duration-300 text-[#009EDB] dark:text-white">
+            Portfolio
+          </NavLink>
+          <nav className="hidden md:flex items-center space-x-6">
+            {[
+              { to: "/", label: "Home", icon: <Home size={18} />, color: "text-[#009EDB]" },
+              { to: "/about", label: "About", icon: <User size={18} />, color: "text-gray-800 dark:text-white" },
+              { to: "/projects", label: "Projects", icon: <Briefcase size={18} />, color: "text-gray-800 dark:text-white" },
+              { to: "/certifications", label: "Certifications", icon: <Award size={18} />, color: "text-gray-800 dark:text-white" }
+            ].map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) => cn(
+                  "flex items-center px-4 py-2 text-sm rounded-md transition-colors duration-300 gap-2",
+                  isActive ? `${item.color} font-medium` : `${item.color} hover:text-[#009EDB]`
+                )}
+              >
+                {item.icon} <span>{item.label}</span>
+              </NavLink>
+            ))}
             
+            {/* Beautiful Dark Mode Toggle */}
             <button
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-white drop-shadow-md hover:text-portfolio-teal-light"
-              onClick={toggleMenu}
+              onClick={handleThemeToggle}
+              className="relative w-14 h-8 flex items-center rounded-full p-1 bg-gray-300 dark:bg-gray-900 transition-all duration-300"
+              aria-label="Toggle theme"
             >
-              <span className="sr-only">Open menu</span>
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              <div className={cn(
+                "w-6 h-6 flex items-center justify-center rounded-full transition-all duration-300 transform",
+                theme === "dark" 
+                  ? "translate-x-6 bg-teal-300 text-gray-900"
+                  : "translate-x-0 bg-white text-gray-700"
+              )}>
+                {theme === "dark" ? <Moon size={16} /> : <Sun size={16} />}
+              </div>
             </button>
-          </div>
-          
-          <nav className="hidden md:flex space-x-4 items-center">
-            <NavLink
-              to="/"
-              className={({ isActive }) => isActive ? "nav-link-active text-white drop-shadow-md" : "nav-link text-white/80 drop-shadow-md hover:text-white"}
-              end
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/about"
-              className={({ isActive }) => isActive ? "nav-link-active text-white drop-shadow-md" : "nav-link text-white/80 drop-shadow-md hover:text-white"}
-            >
-              About
-            </NavLink>
-            <NavLink
-              to="/projects"
-              className={({ isActive }) => isActive ? "nav-link-active text-white drop-shadow-md" : "nav-link text-white/80 drop-shadow-md hover:text-white"}
-            >
-              Projects
-            </NavLink>
-            <NavLink
-              to="/certifications"
-              className={({ isActive }) => isActive ? "nav-link-active text-white drop-shadow-md" : "nav-link text-white/80 drop-shadow-md hover:text-white"}
-            >
-              Certifications
-            </NavLink>
-            
-            <div className="flex items-center space-x-2 ml-4">
-              <Switch
-                checked={theme === 'dark'}
-                onCheckedChange={toggleTheme}
-                className="data-[state=checked]:bg-portfolio-teal-light data-[state=unchecked]:bg-portfolio-blue"
-              />
-              <span className="text-xs text-white drop-shadow-md">
-                {theme === 'dark' ? 'Dark' : 'Light'}
-              </span>
-            </div>
-          </nav>
-        </div>
-      </div>
 
-      {/* Mobile menu */}
-      <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden`}>
-        <div className="flex flex-col p-4 pb-6 space-y-4 bg-white/90 dark:bg-portfolio-navy/90 backdrop-blur-md">
-          <NavLink
-            to="/"
-            className={({ isActive }) => isActive ? "nav-link-active text-portfolio-blue dark:text-portfolio-teal-light" : "nav-link text-gray-700 dark:text-gray-300"}
-            end
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={({ isActive }) => isActive ? "nav-link-active text-portfolio-blue dark:text-portfolio-teal-light" : "nav-link text-gray-700 dark:text-gray-300"}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            About
-          </NavLink>
-          <NavLink
-            to="/projects"
-            className={({ isActive }) => isActive ? "nav-link-active text-portfolio-blue dark:text-portfolio-teal-light" : "nav-link text-gray-700 dark:text-gray-300"}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Projects
-          </NavLink>
-          <NavLink
-            to="/certifications"
-            className={({ isActive }) => isActive ? "nav-link-active text-portfolio-blue dark:text-portfolio-teal-light" : "nav-link text-gray-700 dark:text-gray-300"}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Certifications
-          </NavLink>
+          </nav>
         </div>
       </div>
     </header>
