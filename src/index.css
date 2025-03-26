@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -40,8 +41,8 @@ body {
 }
 
 /* ✅ Dark mode background */
-.dark .home-background {
-  background-color: #1E293B; /* Dark navy blue */
+.dark .home-background { 
+  background-color: #000000; /* Dark navy blue */
 }
 
 /* ✅ Prevent extra white space at bottom */
@@ -55,7 +56,7 @@ body {
   min-height: 100vh;
 }
 .dark .normal-background {
-  background-color: #1a1a1a; /* Dark mode color */
+  background-color: #000000; /* Dark mode color */
 }
 
 /* ✅ Footer Fix - Always Stays at Bottom */
@@ -67,3 +68,119 @@ footer {
   justify-content: center;
   padding: 1rem 0;
 }
+
+@layer base {
+  .bg-light-theme {
+    background-image: url('/background-light.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .bg-dark-theme {
+    background-image: url('/background-dark.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+/* ✅ Background for About, Projects, and Certifications */
+.bg-custom {
+  background-color: #B5E4F9; /* Light mode background */
+}
+
+/* ✅ Dark mode background */
+.dark .bg-custom {
+  background-color: #000000;
+}
+
+/* ✅ Fix Social Buttons for ALL Pages */
+.social-buttons {
+  position: absolute !important; 
+  bottom: 20px !important; /* Move buttons up slightly */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: flex !important;
+  gap: 1rem !important;
+  z-index: 10 !important;
+  background: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* ✅ Ensure Home Page Buttons Stay Over Background */
+.home-background .social-buttons {
+  position: absolute !important; /* Changed to absolute */
+  bottom: 40px !important; /* Raised higher */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 50 !important; /* Higher z-index to stay above */
+  background: transparent !important;
+}
+
+/* ✅ Ensure there's enough space at the bottom of the page */
+.normal-background {
+  padding-bottom: 100px !important; /* Adjust padding so nothing overlaps */
+}
+
+/* ✅ Remove bottom border, shadow, margin, padding from About Page */
+.about-page,
+.about-page::after,
+.about-page * {
+  border-bottom: none !important;
+  box-shadow: none !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* ✅ Extra: Make Sure No Hidden Content */
+.about-page::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+
+/* ✅ Home Page - Ensure Background Covers Whole Screen */
+.home-page {
+  position: relative !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-image: url('/home/ser123/friendly-portfolio-sprout/public/lovable-uploads/72165df4-6e11-4b92-8129-e976fa6821b2.png') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* ✅ Fix Social Buttons to Sit ON the Background (Home Page Only) */
+.home-page .social-buttons {
+  position: absolute !important;
+  bottom: 30px !important; /* Move them up slightly */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: flex !important;
+  gap: 1rem !important;
+  z-index: 50 !important;
+  background: transparent !important;
+}
+
+/* ✅ REMOVE the White Bar from Home Page */
+.home-page footer {
+  display: none !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+/* ✅ DO NOT Change Anything Else on Other Pages */
+
+

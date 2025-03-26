@@ -1,9 +1,7 @@
-
-import { useState } from 'react';
-import { Award, CheckCircle, ChevronRight, BarChart } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Award, Trophy, BarChart, Shield, Star, Eye } from 'lucide-react';
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -12,170 +10,262 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 const Certifications = () => {
-  const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
-
-  const toggleItem = (id: string) => {
-    setOpenItems((prev) => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
+  const [selectedTab, setSelectedTab] = useState("certifications");
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const certifications = [
     {
       id: "cert1",
-      name: "Salesforce Administrator",
-      date: "April 2023",
-      description: "Certified professional in Salesforce administration, data management, and platform configuration.",
-      skills: ["User Management", "Security", "Data Management", "Process Automation"]
+      name: "Salesforce Certified Administrator",
+      date: "November 2023",
+      description: "Validated expertise in user management, security, automation, and data analytics on the Salesforce Platform.",
+      image: "/certs/Salesforce Certified Administrator.png",
+      link: "/certs/Salesforce Certified Administrator.pdf"
     },
     {
       id: "cert2",
-      name: "Platform App Builder",
-      date: "June 2023",
-      description: "Certified in designing, building, and implementing custom applications using the Salesforce Platform.",
-      skills: ["App Design", "Object Relationships", "User Experience", "Business Logic"]
+      name: "Salesforce Certified Business Analyst",
+      date: "February 2025",
+      description: "Demonstrates skills in gathering requirements, stakeholder collaboration, and delivering business value through Salesforce solutions.",
+      image: "/certs/Salesforce Certified Business Analyst.png",
+      link: "/certs/Salesforce Certified Business Analyst.pdf"
     },
     {
       id: "cert3",
-      name: "Sales Cloud Consultant",
-      date: "August 2023",
-      description: "Specialized certification for implementing Sales Cloud solutions to meet business requirements.",
-      skills: ["Sales Process Design", "Opportunity Management", "Product Configuration", "Sales Analytics"]
+      name: "Salesforce Certified AI Associate",
+      date: "November 2024",
+      description: "Foundational understanding of artificial intelligence and its application within Salesforce technologies.",
+      image: "/certs/Salesforce Certified AI Associate.png",
+      link: "/certs/Salesforce Certified AI Associate.pdf"
+    },
+    {
+      id: "cert4",
+      name: "Atlassian Agile Project Management Certificate",
+      date: "December 2024",
+      description: "Covers agile fundamentals, Jira project management, and career foundations for leadership in modern teams.",
+      image: "/certs/Atlassian Agile Project Management Professional Certificate.png",
+      link: "/certs/Atlassian Agile Project Management Professional Certificate.pdf"
+    },
+    {
+      id: "cert5",
+      name: "Professional Scrum Product Owner I (PSPO I)",
+      date: "March 2025",
+      description: "Validates understanding of Scrum principles and ability to maximize product value as a Product Owner.",
+      image: "/certs/Professional Scrum Product Owner I.png",
+      link: "/certs/Professional Scrum Product Owner I.pdf"
     }
   ];
 
   const superbadges = [
     {
-      id: "badge1",
-      name: "Process Automation Specialist",
-      description: "Demonstrated advanced skills in Flow Builder, Process Builder, and Approval Processes.",
-      points: 15000
+      id: "sb1",
+      name: "Business Administration Specialist",
+      description: "Brighten up a new business unit with the Salesforce tools the team needs to succeed.",
+      icon: <Star className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge_business_specialist"
     },
     {
-      id: "badge2",
-      name: "Security Specialist",
-      description: "Mastery in implementing complex security models, encryption, and sharing configurations.",
-      points: 17500
+      id: "sb2",
+      name: "Lightning Experience Reports & Dashboards Specialist",
+      description: "Design powerful reports and dashboards to shine a light on your data.",
+      icon: <BarChart className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge-lex-rd"
     },
     {
-      id: "badge3",
-      name: "Advanced Admin Skills",
-      description: "Expertise in advanced administration features including territory management and forecasting.",
-      points: 12500
+      id: "sb3",
+      name: "User Authentication Settings Superbadge Unit",
+      description: "Bring user authentication settings up to standard to secure your org.",
+      icon: <Shield className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge-user-authentication-settings"
+    },
+    {
+      id: "sb4",
+      name: "Multi-Factor Authentication and Single Sign-On Settings Superbadge Unit",
+      description: "Configure MFA and SSO settings based on a set of requirements.",
+      icon: <Shield className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge-mfa-sso-settings"
+    },
+    {
+      id: "sb5",
+      name: "User Authentication Troubleshooting Superbadge Unit",
+      description: "Troubleshoot user authentication issues based on a scenario.",
+      icon: <Shield className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge-user-authentication-troubleshooting"
+    },
+    {
+      id: "sb6",
+      name: "User Authentication Specialist Superbadge",
+      description: "Complete the capstone assessment to earn the User Authentication Specialist Superbadge.",
+      icon: <Shield className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge-user-authentication"
+    },
+    {
+      id: "sb7",
+      name: "Authentication Governance Superbadge Unit",
+      description: "Prepare your org to proactively monitor authentication activities.",
+      icon: <Shield className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge_governing_authentication_sbu"
+    },
+    {
+      id: "sb8",
+      name: "Access Governance Superbadge Unit",
+      description: "Monitor your org for access-related security vulnerabilities.",
+      icon: <Shield className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge_governing_access_sbu"
+    },
+    {
+      id: "sb9",
+      name: "Security Governance Specialist Superbadge",
+      description: "Complete the capstone assessment to earn the Security Governance Specialist Superbadge.",
+      icon: <Shield className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge_security_governance_specialist"
+    },
+    {
+      id: "sb10",
+      name: "User Access Fundamentals Superbadge Unit",
+      description: "Flex your security muscles by locking down record access.",
+      icon: <Shield className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge_object_access_sbu"
+    },
+    {
+      id: "sb11",
+      name: "Extended User Access and Restriction Superbadge Unit",
+      description: "Build effective sharing solutions to provide the right access to the right records.",
+      icon: <Shield className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge_record_field_access_sbu"
+    },
+    {
+      id: "sb12",
+      name: "User Access Troubleshooting Superbadge Unit",
+      description: "Troubleshoot user access issues based on a scenario.",
+      icon: <Shield className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge_user_access_troubleshooting_sbu"
+    },
+    {
+      id: "sb13",
+      name: "User Access Specialist Superbadge",
+      description: "Complete the capstone assessment to earn the User Access Specialist Superbadge.",
+      icon: <Shield className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge_user_access_specialist"
+    },
+    {
+      id: "sb14",
+      name: "Security Specialist Superbadge",
+      description: "Complete the capstone assessment to earn the Security Specialist Superbadge.",
+      icon: <Shield className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge_security_specialist"
+    },
+    {
+      id: "sb15",
+      name: "Admin Super Set",
+      description: "Complete the capstone assessment to earn the Admin Super Set.",
+      icon: <Star className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge_admin_superset"
+    },
+    {
+      id: "sb16",
+      name: "Prompt Builder Templates Superbadge Unit",
+      description: "Create Prompt Builder templates to supercharge AI-powered insights and engagement.",
+      icon: <Star className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge_prompt_builder_templates_sbu"
+    },
+    {
+      id: "sb17",
+      name: "Agentforce for Service Superbadge Unit",
+      description: "Customize an Agentforce Service Agent to handle customer inquiries and bookings.",
+      icon: <Star className="h-6 w-6" />,
+      link: "https://trailhead.salesforce.com/content/learn/superbadges/superbadge-agentforce-service-sbu"
     }
   ];
+  
 
   return (
-    <section className="py-16 bg-white dark:bg-portfolio-navy-deep">
-      <div className="section-container">
-        <Tabs defaultValue="certifications" className="w-full">
-          <TabsList className="grid grid-cols-2 max-w-md mx-auto mb-8">
-            <TabsTrigger value="certifications" className="flex items-center gap-2">
-              <Award size={16} />
-              Certifications
-            </TabsTrigger>
-            <TabsTrigger value="superbadges" className="flex items-center gap-2">
-              <BarChart size={16} />
-              Superbadges
-            </TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="certifications" className="mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {certifications.map((cert) => (
-                <Card key={cert.id} className="dark:bg-portfolio-navy/80 dark:border-portfolio-teal-light/20">
-                  <CardHeader>
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="rounded-full bg-portfolio-teal-light/20 p-2">
-                        <Award className="h-5 w-5 text-portfolio-teal-light" />
-                      </div>
-                      <Badge variant="outline" className="bg-portfolio-blue/10 border-portfolio-blue/20 text-portfolio-blue dark:bg-portfolio-teal-light/10 dark:border-portfolio-teal-light/20 dark:text-portfolio-teal-light">
-                        {cert.date}
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-xl font-bold text-portfolio-blue dark:text-portfolio-teal-light">
-                      {cert.name}
-                    </CardTitle>
-                    <CardDescription className="dark:text-white/70">
-                      {cert.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Collapsible
-                      open={openItems[cert.id]}
-                      onOpenChange={() => toggleItem(cert.id)}
-                    >
-                      <CollapsibleTrigger asChild>
-                        <Button variant="ghost" className="flex items-center gap-2 w-full justify-between p-2 text-sm text-portfolio-blue dark:text-portfolio-teal-light hover:bg-portfolio-blue/5 dark:hover:bg-portfolio-teal-light/5">
-                          <span>View Skills</span>
-                          <ChevronRight className={`h-4 w-4 transition-transform ${openItems[cert.id] ? 'rotate-90' : ''}`} />
-                        </Button>
-                      </CollapsibleTrigger>
-                      <CollapsibleContent className="pt-2">
-                        <div className="flex flex-wrap gap-2">
-                          {cert.skills.map(skill => (
-                            <div key={skill} className="flex items-center gap-1 text-xs dark:text-white/80">
-                              <CheckCircle size={12} className="text-portfolio-blue dark:text-portfolio-teal-light" />
-                              <span>{skill}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </CollapsibleContent>
-                    </Collapsible>
-                  </CardContent>
-                  <CardFooter>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="w-full dark:border-portfolio-teal-light/30 dark:text-portfolio-teal-light dark:hover:bg-portfolio-teal-light/10"
-                    >
-                      View Credential
-                    </Button>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
+<section className="pt-32 pb-10 min-h-screen flex items-center justify-center bg-white dark:bg-black">
 
-          <TabsContent value="superbadges" className="mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {superbadges.map((badge) => (
-                <Card key={badge.id} className="overflow-hidden dark:bg-portfolio-navy/80 dark:border-portfolio-teal-light/20">
-                  <div className="bg-gradient-to-r from-portfolio-blue to-portfolio-teal h-2"></div>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-xl font-bold text-portfolio-blue dark:text-portfolio-teal-light">
-                      <div className="rounded-full bg-portfolio-blue/10 dark:bg-portfolio-teal-light/10 p-1.5">
-                        <BarChart className="h-5 w-5 text-portfolio-blue dark:text-portfolio-teal-light" />
-                      </div>
-                      {badge.name}
-                    </CardTitle>
-                    <CardDescription className="dark:text-white/70">
-                      {badge.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-500 dark:text-white/50">Points Earned:</span>
-                      <span className="font-bold text-portfolio-blue dark:text-portfolio-teal-light">{badge.points.toLocaleString()}</span>
-                    </div>
-                  </CardContent>
-                  <CardFooter className="bg-gray-50 dark:bg-portfolio-navy-deep/50">
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="w-full dark:border-portfolio-teal-light/30 dark:text-portfolio-teal-light dark:hover:bg-portfolio-teal-light/10"
-                    >
-                      View in Trailhead
-                    </Button>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
+      <div className="w-full max-w-screen-xl px-4" ref={containerRef}>
+        <Tabs defaultValue="certifications" onValueChange={setSelectedTab}>
+        <TabsList className="flex w-fit mx-auto mb-12 p-1 rounded-full bg-white dark:bg-white border border-blue-300 shadow">
+  <TabsTrigger
+    value="certifications"
+    className="flex items-center gap-2 w-48 justify-center px-4 py-2 rounded-full text-sm transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#009EDB] data-[state=active]:to-[#00C5B4] data-[state=active]:text-white"
+  >
+    <Award size={16} /> Certifications
+  </TabsTrigger>
+  <TabsTrigger
+    value="superbadges"
+    className="flex items-center gap-2 w-48 justify-center px-4 py-2 rounded-full text-sm transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#009EDB] data-[state=active]:to-[#00C5B4] data-[state=active]:text-white"
+  >
+    <Trophy size={16} /> Superbadges
+  </TabsTrigger>
+</TabsList>
+
+<div className="mt-6 min-h-screen">
+  <TabsContent
+    value="certifications"
+    className="grid grid-cols-1 md:grid-cols-3 gap-8"
+  >
+    {certifications.map(cert => (
+      <Card key={cert.id} className="group bg-white dark:bg-white text-black border border-gray-200 dark:border-gray-300 overflow-hidden rounded-xl">
+<div className="flex flex-col items-end pr-2 pt-2">
+  <Badge className="mb-2 text-black dark:text-white border border-blue-200 dark:border-blue-400 bg-white dark:bg-black">
+    {cert.date}
+  </Badge>
+  <div className="w-full h-48 flex items-center justify-center">
+    <img
+      src={cert.image}
+      alt={cert.name}
+      className="w-full h-full object-contain"
+    />
+  </div>
+</div>
+
+        <CardHeader>
+          <CardTitle className="text-lg font-bold text-[#009EDB] dark:text-[#009EDB]">
+            {cert.name}
+          </CardTitle>
+          <CardDescription className="text-black dark:text-black mt-1">
+            {cert.description}
+          </CardDescription>
+        </CardHeader>
+        <CardFooter className="mt-auto">
+          <a href={cert.link} target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" className="flex items-center gap-2">
+              <Eye className="w-4 h-4" /> View Certificate
+            </Button>
+          </a>
+        </CardFooter>
+      </Card>
+    ))}
+  </TabsContent>
+
+  <TabsContent
+    value="superbadges"
+    className="grid grid-cols-1 md:grid-cols-3 gap-8"
+  >
+    {superbadges.map(badge => (
+      <Card key={badge.id} className="group bg-white dark:bg-white text-black border border-gray-200 dark:border-gray-300 overflow-hidden rounded-xl flex flex-col items-center justify-center text-center px-4 py-6">
+        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-200 to-teal-100 flex items-center justify-center mb-4">
+          <Trophy className="h-6 w-6" />
+        </div>
+        <CardTitle className="text-lg font-bold text-[#009EDB] dark:text-[#009EDB]">
+          {badge.name}
+        </CardTitle>
+        <CardDescription className="mt-2 text-black dark:text-black">
+          {badge.description}
+        </CardDescription>
+        <CardFooter className="mt-4">
+          <a href={badge.link} target="_blank" rel="noopener noreferrer">
+            <Button variant="outline">View in Trailhead</Button>
+          </a>
+        </CardFooter>
+      </Card>
+    ))}
+  </TabsContent>
+</div>
+
+
         </Tabs>
       </div>
     </section>

@@ -1,117 +1,158 @@
-
-import { FileCode, ExternalLink, MessageSquare } from 'lucide-react';
-import { useState } from 'react';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { useState, useEffect } from 'react';
+import { motion } from "framer-motion";
+import { FileCode } from 'lucide-react';
 
 const Projects = () => {
-  const [activeProject, setActiveProject] = useState<string | null>(null);
+  const [currentParticle, setCurrentParticle] = useState(0);
 
-  const projects = [
-    {
-      id: "project1",
-      title: "Sales Cloud Implementation",
-      description: "Complete Sales Cloud implementation for a financial services company",
-      technologies: ["Sales Cloud", "Process Builder", "Lightning Components"],
-      details: "Led a complete Sales Cloud implementation for a financial services company with 200+ users. Designed custom sales processes, built approval workflows, and created dashboard analytics to provide real-time insights for management.",
-      image: "lovable-uploads/67788e89-aad3-45ed-8ebc-d9c955b39ebe.png"
-    },
-    {
-      id: "project2",
-      title: "Service Cloud Optimization",
-      description: "Service process redesign and automation suite",
-      technologies: ["Service Cloud", "Flow Builder", "Einstein Bots"],
-      details: "Redesigned customer service processes and implemented Service Cloud with automated case routing, knowledge base integration, and self-service portal. Reduced average case resolution time by 35%.",
-      image: "lovable-uploads/88a75376-7a89-4b3d-aa57-480485607310.png"
-    },
-    {
-      id: "project3",
-      title: "Marketing Cloud Integration",
-      description: "Cross-cloud integration between Sales and Marketing Cloud",
-      technologies: ["Marketing Cloud", "Journey Builder", "API Integration"],
-      details: "Designed and implemented a seamless integration between Sales Cloud and Marketing Cloud, allowing for personalized customer journeys based on sales activities and customer interactions.",
-      image: "lovable-uploads/76fc40c0-cc4b-4269-a802-4868c37d710e.png"
-    }
-  ];
+  const [particles, setParticles] = useState<Array<{x: number, y: number, size: number, delay: number}>>([]);
+
+  useEffect(() => {
+    const newParticles = Array.from({ length: 20 }, () => ({
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 10 + 2,
+      delay: Math.random() * 5,
+    }));
+    
+    setParticles(newParticles);
+
+    const particleInterval = setInterval(() => {
+      setCurrentParticle(prev => (prev + 1) % 20);
+    }, 500);
+    
+    return () => {
+      clearInterval(particleInterval);
+    };
+  }, []);
 
   return (
-    <section className="py-16 bg-white dark:bg-portfolio-navy-deep">
-      <div className="section-container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-          {projects.map((project) => (
-            <Card 
-              key={project.id}
-              className="card-hover overflow-hidden dark:bg-portfolio-navy/80 dark:border-portfolio-teal-light/20 group"
-            >
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                  <div className="p-4 w-full">
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <Badge key={tech} variant="outline" className="bg-white/10 text-white border-white/20">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <CardHeader>
-                <CardTitle className="text-xl font-bold text-portfolio-blue dark:text-portfolio-teal-light">
-                  {project.title}
-                </CardTitle>
-                <CardDescription className="dark:text-white/70">
-                  {project.description}
-                </CardDescription>
-              </CardHeader>
+<section className="h-screen w-full bg-white dark:bg-black relative flex flex-col items-center justify-center gap-8">
+  {/* ✅ Background Particles */}
+  <div className="absolute inset-0 overflow-hidden">
+    {particles.map((particle, i) => (
+      <motion.div 
+        key={i}
+        className="absolute rounded-full bg-portfolio-teal/30"
+        style={{
+          left: `${particle.x}%`,
+          top: `${particle.y}%`,
+          width: `${particle.size}px`,
+          height: `${particle.size}px`,
+        }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ 
+          opacity: currentParticle === i ? [0.2, 0.7, 0.2] : 0.2,
+          scale: currentParticle === i ? [1, 1.5, 1] : 1,
+          boxShadow: "0 0 5px rgba(79,209,197,0.3)"
+        }}
+        transition={{ 
+          delay: particle.delay,
+          duration: 3,
+          repeat: Infinity,
+          repeatType: "reverse"
+        }}
+      />
+    ))}
+  </div>
 
-              <CardContent>
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value={project.id} className="border-b-0">
-                    <AccordionTrigger className="text-sm text-portfolio-blue dark:text-portfolio-teal hover:no-underline py-2">
-                      <span className="flex items-center gap-2">
-                        <MessageSquare size={16} />
-                        Project Details
-                      </span>
-                    </AccordionTrigger>
-                    <AccordionContent className="text-sm dark:text-white/80">
-                      {project.details}
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </CardContent>
-
-              <CardFooter className="pt-0 flex justify-end">
-                <Button variant="outline" size="sm" className="gap-1 dark:border-portfolio-teal-light/30 dark:text-portfolio-teal-light dark:hover:bg-portfolio-teal-light/10">
-                  View Project <ExternalLink size={14} />
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
+  {/* ✅ Main Content (Logo + Text) */}
+  <div className="relative z-10 flex flex-col items-center justify-center">
+    {/* ✅ Animated Logo */}
+    <motion.div 
+      className="mb-6 relative"
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ 
+        type: "spring",
+        stiffness: 100,
+        delay: 0.2,
+        duration: 0.8
+      }}
+    >
+      <div className="relative flex items-center justify-center">
+        <div className="relative p-10 rounded-full bg-portfolio-blue dark:bg-portfolio-blue border border-white/10 dark:border-black/10">
+          <motion.div 
+            className="relative z-10 flex items-center justify-center"
+            animate={{
+              rotate: [0, 5, 0, -5, 0],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <FileCode className="h-24 w-24 text-white" />
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.div>
+
+    {/* ✅ "Coming soon" Text */}
+    <motion.h1 
+      className="text-5xl md:text-7xl font-bold font-heading text-portfolio-blue mb-4 tracking-tight dark:text-portfolio-blue"
+      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3, duration: 0.6 }}
+    >
+      <span className="text-portfolio-blue dark:text-portfolio-blue">Coming soon</span>
+    </motion.h1>
+
+    {/* ✅ Centered Subtitle */}
+    <motion.div 
+      className="glass-card p-6 md:p-8 max-w-2xl backdrop-blur-xl bg-white dark:bg-black"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.4, duration: 0.8 }}
+    >
+      <motion.p 
+        className="text-black/80 dark:text-white/80 text-lg md:text-xl text-center leading-relaxed" 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.6 }}
+      >
+        I'm currently working on some exciting Salesforce projects. Check back soon to see my latest work!
+      </motion.p>
+    </motion.div>
+  </div>
+
+  {/* ✅ Social Buttons FIXED IN PLACE (No Scroll, Perfectly Aligned) */}
+  <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 z-10 flex gap-4">
+
+    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+      <motion.img 
+        src="/linkedin.png" 
+        alt="LinkedIn" 
+        className="w-12 h-12 transition-transform hover:scale-110"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      />
+    </a>
+
+    <a href="https://trailhead.salesforce.com" target="_blank" rel="noopener noreferrer">
+      <motion.img 
+        src="/trailhead2.png" 
+        alt="Trailhead" 
+        className="w-12 h-12 transition-transform hover:scale-110"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      />
+    </a>
+
+    <a href="mailto:midoboukhatem@gmail.com">
+      <motion.img 
+        src="/gmail.png" 
+        alt="Email" 
+        className="w-12 h-12 transition-transform hover:scale-110"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      />
+    </a>
+  </div>
+</section>
+
   );
 };
-
 export default Projects;

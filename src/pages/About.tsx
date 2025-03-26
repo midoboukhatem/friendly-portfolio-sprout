@@ -1,9 +1,8 @@
-
 import AboutIntro from '../components/about/AboutIntro';
 
 const About = () => {
   return (
-    <section className="py-12 bg-white dark:bg-portfolio-navy">
+    <section className="about-page min-h-screen py-12">
       <div className="section-container">
         <AboutIntro />
       </div>

@@ -34,9 +34,14 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center py-4">
-          <NavLink to="/" className="text-xl font-bold font-heading transition-all duration-300 text-[#009EDB] dark:text-white">
-            Portfolio
-          </NavLink>
+        <NavLink to="/" className="flex items-center">
+  <img 
+    src="/logo5.png" 
+    alt="Logo" 
+    className="h-10 w-auto transition-all duration-300"
+  />
+</NavLink>
+
           <nav className="hidden md:flex items-center space-x-6">
             {[
               { to: "/", label: "Home", icon: <Home size={18} />, color: "text-[#009EDB]" },
@@ -56,21 +61,28 @@ const Navbar = () => {
               </NavLink>
             ))}
             
-            {/* Beautiful Dark Mode Toggle */}
-            <button
-              onClick={handleThemeToggle}
-              className="relative w-14 h-8 flex items-center rounded-full p-1 bg-gray-300 dark:bg-gray-900 transition-all duration-300"
-              aria-label="Toggle theme"
-            >
-              <div className={cn(
-                "w-6 h-6 flex items-center justify-center rounded-full transition-all duration-300 transform",
-                theme === "dark" 
-                  ? "translate-x-6 bg-teal-300 text-gray-900"
-                  : "translate-x-0 bg-white text-gray-700"
-              )}>
-                {theme === "dark" ? <Moon size={16} /> : <Sun size={16} />}
-              </div>
-            </button>
+{/* Dark/Light Mode Toggle */}
+<button
+  onClick={toggleTheme}
+  className={cn(
+    "relative w-14 h-8 flex items-center rounded-full p-1 transition-all duration-300",
+    theme === "dark" ? "bg-white" : "bg-[#B5E4F9]" // White in dark mode, Yellow in light mode
+  )}
+  aria-label="Toggle theme"
+>
+  <div
+    className={cn(
+      "w-6 h-6 flex items-center justify-center rounded-full transition-all duration-300 transform",
+      theme === "dark"
+        ? "translate-x-6 bg-black text-white"  // Black toggle in dark mode
+        : "translate-x-0 bg-white text-black"  // White toggle in light mode
+    )}
+  >
+    {theme === "dark" ? <Moon size={16} /> : <Sun size={16} />}
+  </div>
+</button>
+
+
 
           </nav>
         </div>
