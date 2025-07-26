@@ -42,6 +42,10 @@ const AboutIntro = () => {
             src="/My roadmap1.webp" 
             alt="Career Roadmap"
             className="w-full max-h-[700px] object-contain"
+            onError={(e) => {
+              console.error('Failed to load image:', e);
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
           />
         </div>
       </div>
