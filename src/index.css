@@ -40,23 +40,10 @@ body {
   background-color: #B3E5FC; /* Light sky blue for light mode */
 }
 
-/* ✅ Dark mode background */
-.dark .home-background { 
-  background-color: #000000; /* Dark navy blue */
-}
-
-/* ✅ Prevent extra white space at bottom */
-.home-background main {
-  flex-grow: 1;
-}
-
 /* ✅ Normal background for other pages */
 .normal-background {
   background-color: white;
   min-height: 100vh;
-}
-.dark .normal-background {
-  background-color: #000000; /* Dark mode color */
 }
 
 /* ✅ Footer Fix - Always Stays at Bottom */
@@ -88,11 +75,6 @@ footer {
 /* ✅ Background for About, Projects, and Certifications */
 .bg-custom {
   background-color: #B5E4F9; /* Light mode background */
-}
-
-/* ✅ Dark mode background */
-.dark .bg-custom {
-  background-color: #000000;
 }
 
 /* ✅ Fix Social Buttons for ALL Pages */
