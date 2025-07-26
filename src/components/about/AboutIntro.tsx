@@ -6,7 +6,7 @@ const AboutIntro = () => {
       <div className="mt-6 w-full max-w-4xl">
         <div className="p-1 rounded-lg">
           <img 
-            src="/about%20me%20image.webp" 
+            src="/about me image.webp" 
             alt="About Me"
             className="w-full max-h-[400px] object-contain"
           />
@@ -39,7 +39,7 @@ const AboutIntro = () => {
       <div className="mt-3 w-full max-w-4xl">
         <div className="p-0 rounded-lg">
           <img 
-            src="/My%20roadmap1.webp" 
+            src="/My roadmap1.webp" 
             alt="Career Roadmap"
             className="w-full max-h-[700px] object-contain"
           />

@@ -61,28 +61,6 @@ const Navbar = () => {
               </NavLink>
             ))}
             
-{/* Dark/Light Mode Toggle */}
-<button
-  onClick={toggleTheme}
-  className={cn(
-    "relative w-14 h-8 flex items-center rounded-full p-1 transition-all duration-300",
-    theme === "dark" ? "bg-white" : "bg-[#B5E4F9]" // White in dark mode, Yellow in light mode
-  )}
-  aria-label="Toggle theme"
->
-  <div
-    className={cn(
-      "w-6 h-6 flex items-center justify-center rounded-full transition-all duration-300 transform",
-      theme === "dark"
-        ? "translate-x-6 bg-black text-white"  // Black toggle in dark mode
-        : "translate-x-0 bg-white text-black"  // White toggle in light mode
-    )}
-  >
-    {theme === "dark" ? <Moon size={16} /> : <Sun size={16} />}
-  </div>
-</button>
-
-
 
           </nav>
         </div>
