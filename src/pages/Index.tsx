@@ -13,14 +13,14 @@ const Index = () => {
     >
       {/* Hero Section - Fully Centered Text */}
       <motion.div 
-        className="flex flex-col items-center justify-center w-full max-w-3xl h-full py-8 sm:py-0"
+        className="flex flex-col items-center justify-center w-full max-w-3xl h-full py-8 sm:py-0 mt-16 sm:mt-0"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
         {/* Animated Heading */}
         <motion.h1 
-          className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground dark:text-white drop-shadow-lg"
+          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-foreground dark:text-white drop-shadow-lg"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }} // ✅ Applied Space Grotesk font
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -31,7 +31,7 @@ const Index = () => {
 
         {/* Animated Paragraph */}
         <motion.p 
-          className="text-lg md:text-xl mb-8 text-foreground dark:text-white drop-shadow-md"
+          className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-foreground dark:text-white drop-shadow-md"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
@@ -43,7 +43,7 @@ const Index = () => {
 
         {/* Resume & Cover Letter Buttons */}
         <motion.div 
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10 sm:mb-0"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}

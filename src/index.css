@@ -165,4 +165,15 @@ footer {
 
 /* ✅ DO NOT Change Anything Else on Other Pages */
 
+@media (max-width: 640px) {
+  .home-page,
+  .bg-light-theme {
+    background-image: none !important;
+    background-color: #fff !important;
+  }
+  .social-buttons {
+    bottom: 10px !important;
+  }
+}
+
 
