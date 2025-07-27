@@ -9,11 +9,11 @@ const Index = () => {
   return (
     <section 
       className={`flex flex-col items-center justify-center text-center h-screen w-full overflow-hidden bg-cover bg-center transition-all duration-500
-        ${theme === "dark" ? "bg-dark-theme" : "bg-light-theme"}`}
+        ${theme === "dark" ? "bg-dark-theme" : "bg-light-theme"} px-4 sm:px-8`}
     >
       {/* Hero Section - Fully Centered Text */}
       <motion.div 
-        className="flex flex-col items-center justify-center w-full max-w-3xl h-full"
+        className="flex flex-col items-center justify-center w-full max-w-3xl h-full py-8 sm:py-0"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
