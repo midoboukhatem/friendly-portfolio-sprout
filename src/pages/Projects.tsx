@@ -118,39 +118,31 @@ const Projects = () => {
     </motion.div>
   </div>
 
-  {/* ✅ Social Buttons FIXED IN PLACE (No Scroll, Perfectly Aligned) */}
-  <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 z-10 flex gap-4">
-
-    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-      <motion.img 
-        src="/linkedin.png" 
-        alt="LinkedIn" 
-        className="w-12 h-12 transition-transform hover:scale-110"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-      />
-    </a>
-
-    <a href="https://trailhead.salesforce.com" target="_blank" rel="noopener noreferrer">
-      <motion.img 
-        src="/trailhead2.png" 
-        alt="Trailhead" 
-        className="w-12 h-12 transition-transform hover:scale-110"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-      />
-    </a>
-
-    <a href="mailto:midoboukhatem@gmail.com">
-      <motion.img 
-        src="/gmail.png" 
-        alt="Email" 
-        className="w-12 h-12 transition-transform hover:scale-110"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-      />
-    </a>
-  </div>
+  {/* ✅ Animated Social Icons */}
+  <motion.div 
+    className="social-container"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.7, duration: 0.6 }}
+  >
+    <ul className="social-icons">
+      <li>
+        <a href="https://www.linkedin.com/in/mohamedboukhatem/" target="_blank" rel="noopener noreferrer">
+          <i className="fa fa-linkedin"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.salesforce.com/trailblazer/medboukhatem" target="_blank" rel="noopener noreferrer">
+          <i className="fa fa-cloud"></i>
+        </a>
+      </li>
+      <li>
+        <a href="mailto:midoboukhatem@gmail.com">
+          <i className="fa fa-envelope"></i>
+        </a>
+      </li>
+    </ul>
+  </motion.div>
 </section>
 
   );

@@ -62,6 +62,32 @@ const Index = () => {
           </motion.div>
         </motion.div>
       </motion.div>
+
+      {/* Animated Social Icons */}
+      <motion.div 
+        className="social-container absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7, duration: 0.6 }}
+      >
+        <ul className="social-icons">
+          <li>
+            <a href="https://www.linkedin.com/in/mohamedboukhatem/" target="_blank" rel="noopener noreferrer">
+              <i className="fa fa-linkedin"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.salesforce.com/trailblazer/medboukhatem" target="_blank" rel="noopener noreferrer">
+              <i className="fa fa-cloud"></i>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:midoboukhatem@gmail.com">
+              <i className="fa fa-envelope"></i>
+            </a>
+          </li>
+        </ul>
+      </motion.div>
     </section>
   );
 };
