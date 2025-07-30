@@ -41,9 +41,9 @@ const Index = () => {
           Always learning, always improving—let's build something great together!
         </motion.p>
 
-        {/* Resume & Cover Letter Buttons */}
+        {/* Resume Button */}
         <motion.div 
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10 sm:mb-0"
+          className="flex justify-center items-center mb-10 sm:mb-0"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
@@ -57,19 +57,6 @@ const Index = () => {
                           bg-[#009EDB] text-white hover:bg-blue-600"
               >
                 Resume
-              </Button>
-            </Link>
-          </motion.div>
-
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link to="/projects">
-              <Button 
-                variant="default" 
-                size="lg"
-                className="font-medium text-base transition-all duration-500 rounded-full dark:bg-black dark:text-white dark:hover:bg-gray-900 
-                          bg-[#009EDB] text-white hover:bg-blue-600"
-              >
-                Cover Letter
               </Button>
             </Link>
           </motion.div>
