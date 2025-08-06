@@ -8,82 +8,58 @@ const Index = () => {
 
   return (
     <section 
-      className={`flex flex-col items-center justify-center text-center h-screen w-full overflow-hidden bg-cover bg-center transition-all duration-500
-        ${theme === "dark" ? "bg-dark-theme" : "bg-light-theme"} px-4 sm:px-8`}
+      className={`relative h-screen w-full overflow-hidden bg-cover bg-center transition-all duration-500
+        ${theme === "dark" ? "bg-dark-theme" : "bg-light-theme"}`}
     >
       {/* Hero Section - Fully Centered Text */}
       <motion.div 
-        className="flex flex-col items-center justify-center w-full max-w-3xl h-full py-8 sm:py-0 mt-16 sm:mt-0"
+        className="absolute top-36 left-24 max-w-xs text-left"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
       >
-        {/* Animated Heading */}
-        <motion.h1 
-          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-foreground dark:text-white drop-shadow-lg"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }} // ✅ Applied Space Grotesk font
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-        >
-          HELLO <span className="text-[#009EDB]">SALESFORCE COMMUNITY!</span>
-        </motion.h1>
-
-        {/* Animated Paragraph */}
-        <motion.p 
-          className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-foreground dark:text-white drop-shadow-md"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-        >
-          I specialize in Salesforce administration and business analysis, optimizing processes, automating workflows, and enhancing CRM strategies. 
-          With a data-driven mindset and a passion for efficiency and user adoption, I help teams streamline operations and drive business growth. 
-          Always learning, always improving—let's build something great together!
-        </motion.p>
-
-        {/* Resume Button */}
-        <motion.div 
-          className="flex justify-center items-center mb-10 sm:mb-0"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-        >
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link to="/about">
-              <Button 
-                variant="default" 
-                size="lg"
-                className="font-medium text-base transition-all duration-500 rounded-full dark:bg-black dark:text-white dark:hover:bg-gray-900 
-                          bg-[#009EDB] text-white hover:bg-blue-600"
-              >
-                Resume
-              </Button>
-            </Link>
-          </motion.div>
-        </motion.div>
+        <p className="text-sm leading-relaxed text-gray-700 mb-2">
+          I'm a tech-savvy creative passionate about building clean, functional, and user-friendly digital experiences.
+        </p>
+        <p className="text-sm font-bold text-gray-700">
+          Let's turn ideas into reality.
+        </p>
       </motion.div>
 
       {/* Animated Social Icons */}
       <motion.div 
-        className="social-container absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10"
+        className="fixed bottom-8 ml-8 z-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7, duration: 0.6 }}
       >
-        <ul className="social-icons">
+        <ul className="flex space-x-3">
           <li>
-            <a href="https://www.linkedin.com/in/mohamedboukhatem/" target="_blank" rel="noopener noreferrer">
-              <i className="fa fa-linkedin"></i>
+            <a 
+              href="https://www.linkedin.com/in/mohamedboukhatem/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-8 h-8 flex items-center justify-center bg-gray-700 text-white rounded-full hover:bg-gray-800 transition-colors duration-300"
+            >
+              <i className="fa fa-linkedin text-sm"></i>
             </a>
           </li>
           <li>
-            <a href="https://www.salesforce.com/trailblazer/medboukhatem" target="_blank" rel="noopener noreferrer">
-              <i className="fa fa-cloud"></i>
+            <a 
+              href="https://www.salesforce.com/trailblazer/medboukhatem" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-8 h-8 flex items-center justify-center bg-gray-700 text-white rounded-full hover:bg-gray-800 transition-colors duration-300"
+            >
+              <i className="fa fa-cloud text-sm"></i>
             </a>
           </li>
           <li>
-            <a href="mailto:midoboukhatem@gmail.com">
-              <i className="fa fa-envelope"></i>
+            <a 
+              href="mailto:midoboukhatem@gmail.com"
+              className="w-8 h-8 flex items-center justify-center bg-gray-700 text-white rounded-full hover:bg-gray-800 transition-colors duration-300"
+            >
+              <i className="fa fa-envelope text-sm"></i>
             </a>
           </li>
         </ul>

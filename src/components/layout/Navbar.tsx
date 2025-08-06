@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, User, Briefcase, Award, Menu, X } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
@@ -8,70 +7,70 @@ const Navbar = () => {
   return (
     <header 
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300 shadow-md bg-white"
+        "fixed top-0 left-0 w-full z-50 transition-all duration-300"
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center py-4">
-          <NavLink to="/" className="flex items-center">
-            <img 
-              src="/logo5.png" 
-              alt="Logo" 
-              className="h-10 w-auto transition-all duration-300"
-            />
+      <div className="max-w-7xl mx-auto px-8 py-6">
+        <div className="flex justify-between items-center relative">
+          <NavLink to="/" className="text-2xl font-bold text-[#00B5F5] flex items-center">
+            medbou.
           </NavLink>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-12 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
             {[
-              { to: "/", label: "Home", icon: <Home size={18} /> },
-              { to: "/about", label: "About", icon: <User size={18} /> },
-              { to: "/projects", label: "Projects", icon: <Briefcase size={18} /> },
-              { to: "/certifications", label: "Certifications", icon: <Award size={18} /> }
+              { to: "/", label: "HOME" },
+              { to: "/about", label: "ABOUT" },
+              { to: "/projects", label: "PROJECTS" },
+              { to: "/certifications", label: "CERTIFICATIONS" }
             ].map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) => cn(
-                  "flex items-center px-4 py-2 text-sm rounded-md transition-colors duration-300 gap-2",
-                  isActive ? "text-[#009EDB] font-medium" : "text-gray-800 hover:text-[#009EDB]"
+                  "text-base font-medium tracking-wide transition-colors duration-300",
+                  isActive ? "text-gray-700" : "text-[#00B5F5] hover:text-gray-700"
                 )}
-                onClick={() => setIsMenuOpen(false)}
               >
-                {item.icon} <span>{item.label}</span>
+                {item.label}
               </NavLink>
             ))}
           </nav>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile Menu Button */}
           <button
-            className="md:hidden flex items-center justify-center p-2 rounded focus:outline-none focus:ring-2 focus:ring-[#009EDB]"
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-            onClick={() => setIsMenuOpen((prev) => !prev)}
+            className="md:hidden text-black hover:text-[#00B5F5] transition-colors duration-300"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {isMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <nav className="md:hidden flex flex-col items-start space-y-2 pb-4 animate-fade-in">
+          <nav className="md:hidden pt-4 pb-6">
             {[
-              { to: "/", label: "Home", icon: <Home size={18} /> },
-              { to: "/about", label: "About", icon: <User size={18} /> },
-              { to: "/projects", label: "Projects", icon: <Briefcase size={18} /> },
-              { to: "/certifications", label: "Certifications", icon: <Award size={18} /> }
+              { to: "/", label: "HOME" },
+              { to: "/about", label: "ABOUT" },
+              { to: "/projects", label: "PROJECTS" },
+              { to: "/certifications", label: "CERTIFICATIONS" }
             ].map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) => cn(
-                  "flex items-center px-4 py-2 text-base rounded-md transition-colors duration-300 gap-2 w-full",
-                  isActive ? "text-[#009EDB] font-medium" : "text-gray-800 hover:text-[#009EDB]"
+                  "block py-2 text-base font-medium tracking-wide transition-colors duration-300",
+                  isActive ? "text-[#00B5F5]" : "text-black hover:text-[#00B5F5]"
                 )}
                 onClick={() => setIsMenuOpen(false)}
               >
-                {item.icon} <span>{item.label}</span>
+                {item.label}
               </NavLink>
             ))}
           </nav>
