@@ -1,11 +1,13 @@
 import AboutIntro from '../components/about/AboutIntro';
+import SocialButtons from '@/components/layout/SocialButtons';
 
 const About = () => {
   return (
-    <section className="about-page min-h-screen py-12">
-      <div className="section-container">
+    <section className="about-page min-h-screen py-12 flex flex-col">
+      <div className="section-container flex-grow">
         <AboutIntro />
       </div>
+      <SocialButtons />
     </section>
   );
 };

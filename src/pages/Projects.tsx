@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import { FileCode } from 'lucide-react';
+import SocialButtons from '@/components/layout/SocialButtons';
 
 const Projects = () => {
   const [currentParticle, setCurrentParticle] = useState(0);
@@ -27,7 +28,7 @@ const Projects = () => {
   }, []);
 
   return (
-<section className="h-screen w-full bg-white dark:bg-black relative flex flex-col items-center justify-center gap-8">
+<section className="min-h-screen w-full bg-white dark:bg-black relative flex flex-col">
   {/* ✅ Background Particles */}
   <div className="absolute inset-0 overflow-hidden">
     {particles.map((particle, i) => (
@@ -57,7 +58,7 @@ const Projects = () => {
   </div>
 
   {/* ✅ Main Content (Logo + Text) */}
-  <div className="relative z-10 flex flex-col items-center justify-center">
+  <div className="relative z-10 flex flex-col items-center justify-center flex-grow mt-32">
     {/* ✅ Animated Logo */}
     <motion.div 
       className="mb-6 relative"
@@ -117,6 +118,7 @@ const Projects = () => {
       </motion.p>
     </motion.div>
   </div>
+  <SocialButtons />
 </section>
 
   );

@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import SocialButtons from '@/components/layout/SocialButtons';
 
 const Certifications = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -57,8 +58,8 @@ const Certifications = () => {
   ];
 
   return (
-    <section className="pt-32 pb-10 min-h-screen flex items-center justify-center bg-white dark:bg-black">
-      <div className="w-full max-w-screen-xl px-4" ref={containerRef}>
+    <section className="pt-32 pb-10 min-h-screen flex flex-col bg-white dark:bg-black">
+      <div className="flex-grow w-full max-w-screen-xl px-4 mx-auto" ref={containerRef}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
     {certifications.map(cert => (
           <Card key={cert.id} className="group bg-white dark:bg-white text-black border border-gray-200 dark:border-gray-300 overflow-hidden rounded-xl">
@@ -94,6 +95,7 @@ const Certifications = () => {
         ))}
         </div>
       </div>
+      <SocialButtons />
     </section>
   );
 };
