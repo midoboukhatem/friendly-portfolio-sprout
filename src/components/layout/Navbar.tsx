@@ -12,7 +12,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-8 py-6">
         <div className="flex justify-between items-center relative">
-          <NavLink to="/" className="text-2xl font-bold text-[#00B5F5] flex items-center">
+          <NavLink to="/" className="text-2xl font-bold text-gray-700 hover:text-gray-800 flex items-center">
             medbou.
           </NavLink>
 
@@ -28,8 +28,8 @@ const Navbar = () => {
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) => cn(
-                  "text-base font-medium tracking-wide transition-colors duration-300",
-                  isActive ? "text-gray-700" : "text-[#00B5F5] hover:text-gray-700"
+                  "text-base tracking-wide transition-all duration-300 text-gray-700 hover:text-gray-800",
+                  isActive ? "font-bold" : "font-medium"
                 )}
               >
                 {item.label}
@@ -39,7 +39,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-black hover:text-[#00B5F5] transition-colors duration-300"
+            className="md:hidden text-gray-700 hover:text-gray-800 transition-colors duration-300"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -65,8 +65,8 @@ const Navbar = () => {
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) => cn(
-                  "block py-2 text-base font-medium tracking-wide transition-colors duration-300",
-                  isActive ? "text-[#00B5F5]" : "text-black hover:text-[#00B5F5]"
+                  "block py-2 text-base tracking-wide transition-all duration-300 text-gray-700 hover:text-gray-800",
+                  isActive ? "font-bold" : "font-medium"
                 )}
                 onClick={() => setIsMenuOpen(false)}
               >
