@@ -61,38 +61,46 @@ const Certifications = () => {
     <section className="pt-36 pb-10 min-h-screen flex flex-col bg-white dark:bg-black">
       <div className="flex-grow w-full max-w-screen-xl px-4 mx-auto" ref={containerRef}>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-    {certifications.map(cert => (
-          <Card key={cert.id} className="group bg-white dark:bg-white text-black border border-gray-200 dark:border-gray-300 overflow-hidden rounded-lg flex flex-col items-center">
-            <div className="flex flex-col items-center w-full pt-2">
-              <Badge className="mb-1 text-black dark:text-white border border-blue-200 dark:border-blue-400 bg-white dark:bg-black text-xs">
-                {cert.date}
-              </Badge>
-              <div className="w-full h-32 flex items-center justify-center px-2">
-                <img
-                  src={cert.image}
-                  alt={cert.name}
-                  className="w-full h-full object-contain"
-                />
+          {certifications.map(cert => (
+            <Card
+              key={cert.id}
+              className="group !bg-[#e6ba38] dark:!bg-[#e6ba38] text-black border border-gray-200 dark:border-gray-300 overflow-hidden rounded-xl flex flex-col items-center"
+            >
+              <div className="flex flex-col items-center w-full pt-2">
+                <Badge className="mb-1 text-black dark:text-white border border-blue-200 dark:border-blue-400 bg-white dark:bg-black text-xs">
+                  {cert.date}
+                </Badge>
+                <div className="w-full h-32 flex items-center justify-center px-2">
+                  <img
+                    src={cert.image}
+                    alt={cert.name}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
               </div>
-            </div>
 
-            <CardHeader className="py-2 px-3 text-center">
-              <CardTitle className="text-sm font-bold text-[#009EDB] dark:text-[#009EDB] text-center">
-                {cert.name}
-              </CardTitle>
-              <CardDescription className="text-black dark:text-black mt-1 text-xs text-center">
-                {cert.description}
-              </CardDescription>
-            </CardHeader>
-            <CardFooter className="mt-auto flex justify-center pb-3">
-              <a href={cert.link} target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="flex items-center gap-1 text-xs h-8">
-                  <Eye className="w-3 h-3" /> View Certificate
-                </Button>
-              </a>
-            </CardFooter>
-          </Card>
-        ))}
+              <CardHeader className="py-2 px-3 text-center">
+                <CardTitle className="text-sm font-bold !text-[#2c2c2c] dark:!text-[#2c2c2c] text-center">
+                  {cert.name}
+                </CardTitle>
+                <CardDescription className="text-black dark:text-black mt-1 text-xs text-center">
+                  {cert.description}
+                </CardDescription>
+              </CardHeader>
+
+              <CardFooter className="mt-auto flex justify-center pb-3">
+                <a href={cert.link} target="_blank" rel="noopener noreferrer">
+                  {/* keep button white */}
+                  <Button
+                    variant="outline"
+                    className="flex items-center gap-1 text-xs h-8 !bg-white !text-black dark:!bg-white dark:!text-black"
+                  >
+                    <Eye className="w-3 h-3" /> View Certificate
+                  </Button>
+                </a>
+              </CardFooter>
+            </Card>
+          ))}
         </div>
       </div>
       <SocialButtons />
