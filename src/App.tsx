@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Certifications from "./pages/Certifications";
+import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/layout/Layout";
 import { ThemeProvider } from "./hooks/use-theme";
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/about" element={<Layout><About /></Layout>} />
             <Route path="/projects" element={<Layout><Projects /></Layout>} />
             <Route path="/certifications" element={<Layout><Certifications /></Layout>} />
+            <Route path="/blog" element={<Layout><Blog /></Layout>} />
             <Route path="*" element={<Layout><NotFound /></Layout>} />
           </Routes>
         </BrowserRouter>
