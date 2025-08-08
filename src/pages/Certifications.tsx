@@ -16,12 +16,12 @@ const Certifications = () => {
 
   const certifications = [
     {
-      id: "cert1",
-      name: "Salesforce Certified Administrator",
-      date: "November 2023",
-      description: "Validated expertise in user management, security, automation, and data analytics on the Salesforce Platform.",
-      image: "/certs/Salesforce Certified Administrator.png",
-      link: "/certs/Salesforce Certified Administrator.pdf"
+      id: "cert5",
+      name: "Professional Scrum Product Owner I (PSPO I)",
+      date: "March 2025",
+      description: "Validates understanding of Scrum principles and ability to maximize product value as a Product Owner.",
+      image: "/certs/Professional Scrum Product Owner I.png",
+      link: "/certs/Professional Scrum Product Owner I.pdf"
     },
     {
       id: "cert2",
@@ -32,14 +32,6 @@ const Certifications = () => {
       link: "/certs/Salesforce Certified Business Analyst.pdf"
     },
     {
-      id: "cert3",
-      name: "Salesforce Certified AI Associate",
-      date: "November 2024",
-      description: "Foundational understanding of artificial intelligence and its application within Salesforce technologies.",
-      image: "/certs/Salesforce Certified AI Associate.png",
-      link: "/certs/Salesforce Certified AI Associate.pdf"
-    },
-    {
       id: "cert4",
       name: "Atlassian Agile Project Management Certificate",
       date: "December 2024",
@@ -48,26 +40,34 @@ const Certifications = () => {
       link: "/certs/Atlassian Agile Project Management Professional Certificate.pdf"
     },
     {
-      id: "cert5",
-      name: "Professional Scrum Product Owner I (PSPO I)",
-      date: "March 2025",
-      description: "Validates understanding of Scrum principles and ability to maximize product value as a Product Owner.",
-      image: "/certs/Professional Scrum Product Owner I.png",
-      link: "/certs/Professional Scrum Product Owner I.pdf"
+      id: "cert3",
+      name: "Salesforce Certified AI Associate",
+      date: "November 2024",
+      description: "Foundational understanding of artificial intelligence and its application within Salesforce technologies.",
+      image: "/certs/Salesforce Certified AI Associate.png",
+      link: "/certs/Salesforce Certified AI Associate.pdf"
+    },
+    {
+      id: "cert1",
+      name: "Salesforce Certified Administrator",
+      date: "November 2023",
+      description: "Validated expertise in user management, security, automation, and data analytics on the Salesforce Platform.",
+      image: "/certs/Salesforce Certified Administrator.png",
+      link: "/certs/Salesforce Certified Administrator.pdf"
     }
   ];
 
   return (
-    <section className="pt-32 pb-10 min-h-screen flex flex-col bg-white dark:bg-black">
+    <section className="pt-24 pb-10 min-h-screen flex flex-col bg-white dark:bg-black">
       <div className="flex-grow w-full max-w-screen-xl px-4 mx-auto" ref={containerRef}>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
     {certifications.map(cert => (
-          <Card key={cert.id} className="group bg-white dark:bg-white text-black border border-gray-200 dark:border-gray-300 overflow-hidden rounded-xl">
-            <div className="flex flex-col items-end pr-2 pt-2">
-              <Badge className="mb-2 text-black dark:text-white border border-blue-200 dark:border-blue-400 bg-white dark:bg-black">
+          <Card key={cert.id} className="group bg-white dark:bg-white text-black border border-gray-200 dark:border-gray-300 overflow-hidden rounded-lg flex flex-col items-center">
+            <div className="flex flex-col items-center w-full pt-2">
+              <Badge className="mb-1 text-black dark:text-white border border-blue-200 dark:border-blue-400 bg-white dark:bg-black text-xs">
                 {cert.date}
               </Badge>
-              <div className="w-full h-48 flex items-center justify-center">
+              <div className="w-full h-32 flex items-center justify-center px-2">
                 <img
                   src={cert.image}
                   alt={cert.name}
@@ -76,18 +76,18 @@ const Certifications = () => {
               </div>
             </div>
 
-            <CardHeader>
-              <CardTitle className="text-lg font-bold text-[#009EDB] dark:text-[#009EDB]">
+            <CardHeader className="py-2 px-3 text-center">
+              <CardTitle className="text-sm font-bold text-[#009EDB] dark:text-[#009EDB] text-center">
                 {cert.name}
               </CardTitle>
-              <CardDescription className="text-black dark:text-black mt-1">
+              <CardDescription className="text-black dark:text-black mt-1 text-xs text-center">
                 {cert.description}
               </CardDescription>
             </CardHeader>
-            <CardFooter className="mt-auto">
+            <CardFooter className="mt-auto flex justify-center pb-3">
               <a href={cert.link} target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="flex items-center gap-2">
-                  <Eye className="w-4 h-4" /> View Certificate
+                <Button variant="outline" className="flex items-center gap-1 text-xs h-8">
+                  <Eye className="w-3 h-3" /> View Certificate
                 </Button>
               </a>
             </CardFooter>
