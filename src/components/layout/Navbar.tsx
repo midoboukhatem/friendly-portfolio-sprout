@@ -12,7 +12,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-8 py-6">
         <div className="flex justify-between items-center relative">
-          <NavLink to="/" className="text-2xl font-bold text-gray-700 hover:text-gray-800 flex items-center">
+          <NavLink to="/" className="text-2xl font-montserrat text-gray-700 hover:text-gray-800 flex items-center font-black">
             medbou.
           </NavLink>
 
