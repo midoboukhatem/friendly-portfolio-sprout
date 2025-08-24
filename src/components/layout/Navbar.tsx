@@ -51,10 +51,12 @@ const Navbar = () => {
   };
 
   return (
-    <header 
+    <header
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300"
+        "fixed top-0 left-0 w-full z-50 transition-all duration-300",
+        "bg-white/50 dark:bg-black/40 backdrop-blur-md"
       )}
+      style={{ WebkitBackdropFilter: 'blur(12px)', backdropFilter: 'blur(12px)' }}
     >
       <div className="max-w-7xl mx-auto px-8 py-6">
         <div className="flex justify-between items-center relative">
