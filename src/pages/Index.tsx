@@ -1,17 +1,31 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from "framer-motion";
 import { Button } from '@/components/ui/button';
 import { useTheme } from "@/hooks/use-theme";
 
 const Index = () => {
   const { theme } = useTheme();
+  const homeRef = useRef(null);
+  const [isHomeInView, setIsHomeInView] = useState(true);
+
+  useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      ([entry]) => setIsHomeInView(entry.isIntersecting),
+      { threshold: 0.5 }
+    );
+    if (homeRef.current) observer.observe(homeRef.current);
+    return () => { if (homeRef.current) observer.unobserve(homeRef.current); };
+  }, []);
 
   return (
-    <section id="home" className={`relative h-screen w-full overflow-hidden bg-cover bg-center transition-all duration-500
+    <section
+      id="home"
+      ref={homeRef}
+      className={`relative h-screen w-full overflow-hidden bg-cover bg-center transition-all duration-500
         ${theme === "dark" ? "bg-dark-theme" : "bg-light-theme"}`}
     >
       {/* Hero Section - Fully Centered Text */}
-      <motion.div 
+      <motion.div
         className="absolute top-36 left-24 max-w-xs text-left"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -25,54 +39,56 @@ const Index = () => {
         </p>
       </motion.div>
 
-      {/* Animated Social Icons */}
-      <div className="fixed bottom-8 w-full px-8 flex justify-between items-center z-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
-        >
-          <ul className="flex space-x-2">
-            <li>
-              <a 
-                href="https://www.linkedin.com/in/mohamedboukhatem/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-8 h-8 flex items-center justify-center bg-gray-700 text-white rounded-full hover:bg-gray-800 transition-colors duration-300"
-              >
-                <i className="fa fa-linkedin text-sm"></i>
-              </a>
-            </li>
-            <li>
-              <a 
-                href="https://www.salesforce.com/trailblazer/medboukhatem" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-8 h-8 flex items-center justify-center bg-gray-700 text-white rounded-full hover:bg-gray-800 transition-colors duration-300"
-              >
-                <i className="fa fa-cloud text-sm"></i>
-              </a>
-            </li>
-            <li>
-              <a 
-                href="mailto:midoboukhatem@gmail.com"
-                className="w-8 h-8 flex items-center justify-center bg-gray-700 text-white rounded-full hover:bg-gray-800 transition-colors duration-300"
-              >
-                <i className="fa fa-envelope text-sm"></i>
-              </a>
-            </li>
-          </ul>
-        </motion.div>
+      {/* Animated Social Icons & Based in France - Only show when Home is in view */}
+      {isHomeInView && (
+        <div className="fixed bottom-8 w-full px-8 flex justify-between items-center z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+          >
+            <ul className="flex space-x-2">
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/mohamedboukhatem/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 flex items-center justify-center bg-gray-700 text-white rounded-full hover:bg-gray-800 transition-colors duration-300"
+                >
+                  <i className="fa fa-linkedin text-sm"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.salesforce.com/trailblazer/medboukhatem"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 flex items-center justify-center bg-gray-700 text-white rounded-full hover:bg-gray-800 transition-colors duration-300"
+                >
+                  <i className="fa fa-cloud text-sm"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:midoboukhatem@gmail.com"
+                  className="w-8 h-8 flex items-center justify-center bg-gray-700 text-white rounded-full hover:bg-gray-800 transition-colors duration-300"
+                >
+                  <i className="fa fa-envelope text-sm"></i>
+                </a>
+              </li>
+            </ul>
+          </motion.div>
 
-        <motion.p 
-          className="text-sm font-bold text-gray-700"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-        >
-          Based in France
-        </motion.p>
-      </div>
+          <motion.p
+            className="text-sm font-bold text-gray-700"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+          >
+            Based in France
+          </motion.p>
+        </div>
+      )}
     </section>
   );
 };
