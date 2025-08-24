@@ -1,11 +1,28 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import { cn } from "@/lib/utils";
+
+const NAV_ITEMS = [
+  { id: "home", label: "HOME" },
+  { id: "about", label: "ABOUT" },
+  { id: "projects", label: "PROJECTS" },
+  { id: "certifications", label: "CERTIFICATIONS" },
+  { id: "blog", label: "BLOG" },
+];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMenuOpen(false);
+    setIsDropdownOpen(false);
+  };
+
   return (
     <header 
       className={cn(
@@ -14,28 +31,20 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-8 py-6">
         <div className="flex justify-between items-center relative">
-          <NavLink to="/" className="text-2xl font-montserrat text-gray-700 hover:text-gray-800 flex items-center font-black">
+          <button onClick={() => scrollToSection('home')} className="text-2xl font-montserrat text-gray-700 hover:text-gray-800 flex items-center font-black cursor-pointer">
             medbou.
-          </NavLink>
+          </button>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-12 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
-            {[
-              { to: "/", label: "HOME" },
-              { to: "/about", label: "ABOUT" },
-              { to: "/projects", label: "PROJECTS" },
-              { to: "/certifications", label: "CERTIFICATIONS" }
-            ].map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                className={({ isActive }) => cn(
-                  "text-base tracking-wide transition-all duration-300 text-gray-700 hover:text-gray-800",
-                  isActive ? "font-bold" : "font-medium"
-                )}
+            {NAV_ITEMS.slice(0, 4).map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-base tracking-wide transition-all duration-300 text-gray-700 hover:text-gray-800 font-medium cursor-pointer"
               >
                 {item.label}
-              </NavLink>
+              </button>
             ))}
           </nav>
 
@@ -48,7 +57,6 @@ const Navbar = () => {
               >
                 <Menu className="h-6 w-6 stroke-[3]" />
               </button>
-              
               {isDropdownOpen && (
                 <>
                   <div
@@ -57,16 +65,12 @@ const Navbar = () => {
                   />
                   <div className="absolute right-0 mt-2 z-50 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
                     <div className="py-1">
-                      <NavLink
-                        to="/blog"
-                        className={({ isActive }) => cn(
-                          "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700",
-                          isActive ? "font-bold" : "font-medium"
-                        )}
-                        onClick={() => setIsDropdownOpen(false)}
+                      <button
+                        onClick={() => scrollToSection('blog')}
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 font-medium cursor-pointer"
                       >
                         BLOG
-                      </NavLink>
+                      </button>
                     </div>
                   </div>
                 </>
@@ -77,39 +81,29 @@ const Navbar = () => {
             <button
               className="md:hidden text-gray-700 hover:text-gray-800 transition-colors duration-300"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              {isMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+            >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {isMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
           <nav className="md:hidden pt-4 pb-6">
-            {[
-              { to: "/", label: "HOME" },
-              { to: "/about", label: "ABOUT" },
-              { to: "/projects", label: "PROJECTS" },
-              { to: "/certifications", label: "CERTIFICATIONS" },
-              { to: "/blog", label: "BLOG" }
-            ].map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                className={({ isActive }) => cn(
-                  "block py-2 text-base tracking-wide transition-all duration-300 text-gray-700 hover:text-gray-800",
-                  isActive ? "font-bold" : "font-medium"
-                )}
-                onClick={() => setIsMenuOpen(false)}
+            {NAV_ITEMS.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="block w-full text-left py-2 text-base tracking-wide transition-all duration-300 text-gray-700 hover:text-gray-800 font-medium cursor-pointer"
               >
                 {item.label}
-              </NavLink>
+              </button>
             ))}
           </nav>
         )}

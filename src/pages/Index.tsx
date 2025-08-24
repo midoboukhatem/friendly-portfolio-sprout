@@ -7,8 +7,7 @@ const Index = () => {
   const { theme } = useTheme();
 
   return (
-    <section 
-      className={`relative h-screen w-full overflow-hidden bg-cover bg-center transition-all duration-500
+    <section id="home" className={`relative h-screen w-full overflow-hidden bg-cover bg-center transition-all duration-500
         ${theme === "dark" ? "bg-dark-theme" : "bg-light-theme"}`}
     >
       {/* Hero Section - Fully Centered Text */}

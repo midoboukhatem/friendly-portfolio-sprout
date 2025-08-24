@@ -3,7 +3,7 @@ import SocialButtons from '@/components/layout/SocialButtons';
 
 const About = () => {
   return (
-    <section className="about-page min-h-screen py-12 flex flex-col">
+    <section id="about" className="about-page min-h-screen py-12 flex flex-col">
       <div className="section-container flex-grow">
         <AboutIntro />
       </div>

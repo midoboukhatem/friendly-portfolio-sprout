@@ -21,7 +21,7 @@ const Blog = () => {
   }, []);
 
   return (
-    <section className="min-h-screen w-full bg-white dark:bg-black relative flex flex-col">
+    <section id="blog" className="min-h-screen w-full bg-white dark:bg-black relative flex flex-col">
       {/* particles */}
       <div className="absolute inset-0 overflow-hidden">
         {particles.map((p, i) => (
