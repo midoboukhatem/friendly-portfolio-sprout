@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
@@ -13,6 +13,33 @@ const NAV_ITEMS = [
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+
+  // IntersectionObserver scroll spy
+  useEffect(() => {
+    const sectionIds = NAV_ITEMS.map(item => item.id);
+    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+    if (sections.length === 0) return;
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        let maxRatio = 0;
+        let current = 'home';
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+            maxRatio = entry.intersectionRatio;
+            current = entry.target.id;
+          }
+        });
+        setActiveSection(current);
+      },
+      {
+        threshold: [0.3, 0.5, 0.7, 1],
+        rootMargin: '-100px 0px -100px 0px',
+      }
+    );
+    sections.forEach(section => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -41,7 +68,12 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-base tracking-wide transition-all duration-300 text-gray-700 hover:text-gray-800 font-medium cursor-pointer"
+                className={cn(
+                  "text-base tracking-wide transition-all duration-300 font-medium cursor-pointer px-3 py-1 rounded-md",
+                  activeSection === item.id
+                    ? "text-black font-bold"
+                    : "text-gray-700 hover:text-gray-800"
+                )}
               >
                 {item.label}
               </button>
@@ -67,7 +99,12 @@ const Navbar = () => {
                     <div className="py-1">
                       <button
                         onClick={() => scrollToSection('blog')}
-                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 font-medium cursor-pointer"
+                        className={cn(
+                          "block w-full text-left px-4 py-2 text-sm font-medium cursor-pointer rounded-md",
+                          activeSection === 'blog'
+                            ? "text-black font-bold"
+                            : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
+                        )}
                       >
                         BLOG
                       </button>
@@ -100,7 +137,12 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="block w-full text-left py-2 text-base tracking-wide transition-all duration-300 text-gray-700 hover:text-gray-800 font-medium cursor-pointer"
+                className={cn(
+                  "block w-full text-left py-2 text-base tracking-wide transition-all duration-300 font-medium cursor-pointer rounded-md",
+                  activeSection === item.id
+                    ? "text-black font-bold"
+                    : "text-gray-700 hover:text-gray-800"
+                )}
               >
                 {item.label}
               </button>
