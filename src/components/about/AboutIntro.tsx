@@ -1,58 +1,46 @@
 const AboutIntro = () => {
   return (
     <div className="p-8 rounded-lg shadow-sm flex flex-col items-center">
-      
-      {/* 🚀 Image at the Top */}
-      <div className="mt-6 w-full max-w-4xl">
-        <div className="p-1 rounded-lg">
-          <img 
-            src="/about me image.webp" 
-            alt="About Me"
-            className="w-full max-h-[400px] object-contain"
-          />
-        </div>
-      </div>
-
       {/* 📜 Text Section Below */}
-      <div className="max-w-4xl text-center mt-6">
+      <div className="max-w-4xl text-justify mt-6">
         <h3 
-          className="text-3xl font-semibold mb-2 text-black"  // Updated class for black color
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}  // Added to match the font from Projects page
+          className="text-xl font-semibold mb-2 text-[#2c2c2c]" 
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}  
         >
-          Hello, Trailblazers & Problem-Solvers!
+          ✨ About Me
         </h3>
-        <p className="text-lg mb-4 dark:text-white">
-          Yes, I'm calling you that for a reason! Like you, I thrive on solving challenges and making business processes more efficient.
-          My career has taken me across Russia, the U.S., France, and Morocco, where I've gained hands-on experience in CRM, marketing, 
-          business analysis, commerce, and data-driven decision-making.
+        <p className="text-base mb-4 dark:text-white">
+          Hi, I’m Mohamed, a Salesforce Consultant who loves solving complex problems and turning them into simple, impactful solutions. I’ve built my career across France, Russia, Morocco, and the U.S., helping teams improve the way they work with CRM, marketing, and data-driven decision-making. Along the way, I’ve earned certifications in Salesforce Administration, Business Analysis and Agile.
         </p>
-        <p className="text-lg mb-4 dark:text-white">
-          I began my journey as a CRM & Marketing Analyst, where I analyzed customer behavior and engagement strategies to optimize marketing campaigns 
-          and sales processes. Working in hospitality, technology, and consulting sectors, I developed a deep understanding of how data can drive business success. 
-          Over time, I realized that automation, process optimization, and structured data management could transform businesses, leading me to Salesforce.
+        <h3 
+          className="text-xl font-bold mt-6 mb-2 text-[#2c2c2c]" 
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}  
+        >
+          💡 My Core Values
+        </h3>
+        <ul className="list-disc list-inside text-base mb-4 dark:text-white"> 
+          <li>Curiosity: I love exploring how things work and asking the right questions to uncover solutions.</li>
+          <li>Collaboration: I believe the best outcomes happen when diverse minds come together.</li>
+          <li>Efficiency: I’m driven by building systems that save time and create real business impact.</li>
+        </ul>
+        <h3 
+          className="text-xl font-bold mt-6 mb-2 text-[#2c2c2c]"  // Reduced from text-3xl to text-xl
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}  
+        >
+          🌍 Outside of Work
+        </h3>
+        <p className="text-base mb-4 dark:text-white">
+          When I’m not configuring Salesforce or analyzing data, you’ll usually find me:
         </p>
-        <p className="text-lg mb-0 dark:text-white">
-          Since then, I've earned multiple Salesforce certifications, worked on CRM optimization, business process automation, and data analysis, 
-          and helped teams improve cross-functional collaboration through data-driven insights. Whether it's automating workflows, 
-          streamlining sales and marketing efforts, or leveraging data for smarter decision-making, I'm passionate about creating scalable, efficient solutions.
+        <ul className="list-disc list-inside text-base mb-8 dark:text-white">
+          <li>🏋️‍♂️ Working out (fitness is my way to stay balanced and focused).</li>
+          <li>🎨 Exploring creative projects (design, websites, or just brainstorming new ideas).</li>
+          <li>🌿 Visiting museums and discovering new places ; curiosity doesn’t stop at work.</li>
+        </ul>
+        <p className="text-base mt-4 mb-2 dark:text-white">
+          Fun fact: I speak four languages (English, Arabic, French, and Russian), which has helped me connect with people from all around the world.
         </p>
       </div>
-
-      {/* 📌 Image at the Bottom */}
-      <div className="mt-3 w-full max-w-4xl">
-        <div className="p-0 rounded-lg">
-          <img 
-            src="/My roadmap1.webp" 
-            alt="Career Roadmap"
-            className="w-full max-h-[700px] object-contain"
-            onError={(e) => {
-              console.error('Failed to load image:', e);
-              (e.target as HTMLImageElement).style.display = 'none';
-            }}
-          />
-        </div>
-      </div>
-
     </div>
   );
 };
