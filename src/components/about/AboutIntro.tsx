@@ -1,3 +1,5 @@
+import SocialButtons from '@/components/layout/SocialButtons';  // Ensure this import is here
+
 const AboutIntro = () => {
   return (
     <div className="p-8 rounded-lg shadow-sm flex flex-col items-center">
@@ -18,13 +20,13 @@ const AboutIntro = () => {
         >
           💡 My Core Values
         </h3>
-        <ul className="list-disc list-inside text-base mb-4 dark:text-white"> 
+        <ul className="list-disc list-inside text-base mb-4 dark:text-white">
           <li>Curiosity: I love exploring how things work and asking the right questions to uncover solutions.</li>
           <li>Collaboration: I believe the best outcomes happen when diverse minds come together.</li>
           <li>Efficiency: I’m driven by building systems that save time and create real business impact.</li>
         </ul>
         <h3 
-          className="text-xl font-bold mt-6 mb-2 text-[#2c2c2c]"  // Reduced from text-3xl to text-xl
+          className="text-xl font-bold mt-6 mb-2 text-[#2c2c2c]" 
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}  
         >
           🌍 Outside of Work
@@ -34,15 +36,15 @@ const AboutIntro = () => {
         </p>
         <ul className="list-disc list-inside text-base mb-8 dark:text-white">
           <li>🏋️‍♂️ Working out (fitness is my way to stay balanced and focused).</li>
-          <li>🎨 Exploring creative projects (design, websites, or just brainstorming new ideas).</li>
-          <li>🌿 Visiting museums and discovering new places ; curiosity doesn’t stop at work.</li>
+          <li>🖥️ Exploring creative projects (design, websites, or just brainstorming new ideas).</li>
+          <li>🏛️ Visiting museums and discovering new places; curiosity doesn’t stop at work.</li>
         </ul>
         <p className="text-base mt-4 mb-2 dark:text-white">
           Fun fact: I speak four languages (English, Arabic, French, and Russian), which has helped me connect with people from all around the world.
         </p>
       </div>
+      <SocialButtons className="mt-4" />
     </div>
   );
 };
-
 export default AboutIntro;
