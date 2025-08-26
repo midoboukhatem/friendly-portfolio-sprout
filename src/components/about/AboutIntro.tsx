@@ -15,7 +15,10 @@ const AboutIntro = () => {
 
       {/* 📜 Text Section Below */}
       <div className="max-w-4xl text-center mt-6">
-        <h3 className="text-3xl font-semibold mb-2 text-portfolio-blue">
+        <h3 
+          className="text-3xl font-semibold mb-2 text-black"  // Updated class for black color
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}  // Added to match the font from Projects page
+        >
           Hello, Trailblazers & Problem-Solvers!
         </h3>
         <p className="text-lg mb-4 dark:text-white">
