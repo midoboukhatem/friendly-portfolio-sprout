@@ -7,7 +7,7 @@ const About = () => {
       <div className="section-container flex-grow">
         <AboutIntro />
       </div>
-      <SocialButtons />
+      {/* <SocialButtons /> */}
     </section>
   );
 };
