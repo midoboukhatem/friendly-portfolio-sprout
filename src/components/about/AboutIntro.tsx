@@ -61,7 +61,7 @@ const AboutIntro = () => {
               className="text-xl font-bold mt-0 mb-0 text-[#2c2c2c]" 
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}  
             >
-              ⚖️ My Core Values
+              ⚙️ My Core Values
             </h3>
           </div>
           <div className={`overflow-hidden transition-all duration-300 ${valuesOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'} md:max-h-none md:opacity-0 md:group-hover:opacity-100 md:transition-opacity`}>
