@@ -59,7 +59,8 @@ const Certifications = () => {
 
   return (
     <section id="certifications" className="pt-36 pb-10 min-h-screen flex flex-col bg-white dark:bg-black">
-      <div className="flex-grow w-full max-w-screen-xl px-4 mx-auto" ref={containerRef}>
+      {/* Allow inner scrolling on small screens */}
+      <div className="flex-grow w-full max-w-screen-xl px-4 mx-auto md:overflow-visible overflow-auto" ref={containerRef} data-allow-scroll>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {certifications.map(cert => (
             <Card
