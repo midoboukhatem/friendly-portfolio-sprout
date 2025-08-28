@@ -129,7 +129,7 @@ const AboutIntro = () => {
           </div>
         </div>
       </div>
-      <div className="mt-4"><SocialButtons /></div>
+      <div className="mt-4 hidden md:block"><SocialButtons /></div>
     </div>
   );
 };

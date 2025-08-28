@@ -91,7 +91,7 @@ const Projects = () => {
           </motion.p>
         </motion.div>
       </div>
-      <SocialButtons />
+      <div className="hidden md:block"><SocialButtons /></div>
     </section>
   );
 };
