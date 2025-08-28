@@ -6,11 +6,11 @@ const AboutIntro = () => {
   const [valuesOpen, setValuesOpen] = useState(false);
   const [outsideOpen, setOutsideOpen] = useState(false);
 
-  const toggleOnMobileOnly = (toggleFn: (v: boolean) => void) => {
+  const toggleOnMobileOnly = (toggleFn: (v: boolean | ((prev: boolean) => boolean)) => void) => {
     if (typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches) {
       return;
     }
-    toggleFn(true);
+    toggleFn((prev) => !prev);
   };
 
   return (
@@ -18,7 +18,7 @@ const AboutIntro = () => {
       <div className="max-w-4xl mt-6 md:flex md:gap-6 md:items-stretch">
         {/* About Me */}
         <div
-          className="bg-[#e6ba38] dark:bg-[#e6ba38] text-black border border-gray-200 dark:border-gray-300 rounded-xl p-4 mb-6 md:mb-0 min-h-[10rem] md:flex-1 cursor-pointer transition-all group relative"
+          className={`bg-[#e6ba38] dark:bg-[#e6ba38] text-black border border-gray-200 dark:border-gray-300 rounded-xl p-4 mb-6 md:mb-0 min-h-[10rem] md:flex-1 cursor-pointer transition-all group relative ${aboutOpen ? 'ring-2 ring-[#2c2c2c]' : ''}`}
           role="button"
           aria-expanded={aboutOpen}
           tabIndex={0}
@@ -54,7 +54,7 @@ const AboutIntro = () => {
 
         {/* My Core Values */}
         <div
-          className="bg-[#e6ba38] dark:bg-[#e6ba38] text-black border border-gray-200 dark:border-gray-300 rounded-xl p-4 mb-6 md:mb-0 min-h-[10rem] md:flex-1 cursor-pointer transition-all group relative"
+          className={`bg-[#e6ba38] dark:bg-[#e6ba38] text-black border border-gray-200 dark:border-gray-300 rounded-xl p-4 mb-6 md:mb-0 min-h-[10rem] md:flex-1 cursor-pointer transition-all group relative ${valuesOpen ? 'ring-2 ring-[#2c2c2c]' : ''}`}
           role="button"
           aria-expanded={valuesOpen}
           tabIndex={0}
@@ -88,7 +88,7 @@ const AboutIntro = () => {
 
         {/* Outside of Work */}
         <div
-          className="bg-[#e6ba38] dark:bg-[#e6ba38] text-black border border-gray-200 dark:border-gray-300 rounded-xl p-4 min-h-[10rem] md:flex-1 cursor-pointer transition-all group relative"
+          className={`bg-[#e6ba38] dark:bg-[#e6ba38] text-black border border-gray-200 dark:border-gray-300 rounded-xl p-4 min-h-[10rem] md:flex-1 cursor-pointer transition-all group relative ${outsideOpen ? 'ring-2 ring-[#2c2c2c]' : ''}`}
           role="button"
           aria-expanded={outsideOpen}
           tabIndex={0}
