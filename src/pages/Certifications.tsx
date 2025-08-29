@@ -58,14 +58,16 @@ const Certifications = () => {
   ];
 
   return (
-    <section id="certifications" className="pt-36 pb-10 min-h-screen flex flex-col bg-white dark:bg-black">
-      {/* Allow inner scrolling on phones only; prevent scroll chaining out of this section */}
-      <div
-        className="flex-grow w-full max-w-screen-xl px-4 mx-auto md:overflow-visible md:h-auto overflow-auto overscroll-contain h-[calc(100vh-11.5rem)]"
-        ref={containerRef}
-        data-allow-scroll
-      >
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+    <section id="certifications" className="min-h-screen w-full bg-white dark:bg-black relative flex flex-col">
+      {/* main */}
+      <div className="relative z-10 flex flex-col flex-grow pt-36">
+        {/* Allow inner scrolling on phones only; prevent scroll chaining out of this section */}
+        <div
+          className="w-full max-w-screen-xl px-4 mx-auto md:overflow-visible overflow-auto overscroll-contain"
+          ref={containerRef}
+          data-allow-scroll
+        >
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {certifications.map(cert => (
             <Card
               key={cert.id}
@@ -106,6 +108,7 @@ const Certifications = () => {
               </CardFooter>
             </Card>
           ))}
+          </div>
         </div>
       </div>
       <div className="hidden md:block"><SocialButtons /></div>
